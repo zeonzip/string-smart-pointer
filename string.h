@@ -48,8 +48,10 @@ bool string_to(String *s, char *literal) {
     size_t len = stringlen(literal);
     size_t cap = len + 1;
 
-    s->data = realloc(s->data, cap);
-    if (s->data == NULL) exit(1);
+    char *newdata = realloc(s->data, cap);
+    if (newdata == NULL) exit(1);
+
+    s->data = newdata;
     s->len = len;
     s->cap = cap;
     bfr_str_set(s->data, literal);
